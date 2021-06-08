@@ -8,7 +8,7 @@ from torch.utils.data import Dataset
 from torch.utils.data import DataLoader
 
 import kss
-from transformers import GPT2LMHeadModel #,AdamW #, PreTrainedTokenizerFast
+from transformers import GPT2LMHeadModel, PreTrainedTokenizerFast
 from tqdm import tqdm
 
 device = torch.device('cuda:1' if torch.cuda.is_available() else 'cpu')
@@ -16,19 +16,24 @@ model = GPT2LMHeadModel.from_pretrained('skt/kogpt2-base-v2') #
 model.config
 model.to(device) # 1510-11MiB
 
-vocab_file_path = './tokenizer/vocab.json'
-merge_file_path = './tokenizer/merges.txt'
-
-tokenizer = MyTokenizer(vocab_file_path, merge_file_path)
-# ATTR_TO_SPECIAL_TOKEN = ['<s>','</s>']
+# MrBananaman tokenizer
+# vocab_file_path = './tokenizer/vocab.json'
+# merge_file_path = './tokenizer/merges.txt'
 #
-def add_special_tokens_(model, tokenizer):
-    orig_num_tokens = tokenizer.get_vocab_size()
-    # tokenizer.add_special_tokens(ATTR_TO_SPECIAL_TOKEN)
-    # num_added_tokens = len(ATTR_TO_SPECIAL_TOKEN)
-    model.resize_token_embeddings(new_num_tokens=orig_num_tokens + 1) # new_num_tokens=orig_num_tokens + num_added_tokens + 1
-
+# tokenizer = MyTokenizer(vocab_file_path, merge_file_path)
+#
+# def add_special_tokens_(model, tokenizer):
+#     orig_num_tokens = tokenizer.get_vocab_size()
+#     # tokenizer.add_special_tokens(ATTR_TO_SPECIAL_TOKEN)
+#     # num_added_tokens = len(ATTR_TO_SPECIAL_TOKEN)
+#     model.resize_token_embeddings(new_num_tokens=orig_num_tokens + 1) # new_num_tokens=orig_num_tokens + num_added_tokens + 1
+#
 # add_special_tokens_(model, tokenizer)
+
+# SKT pre-trained tokenizer
+tokenizer = PreTrainedTokenizerFast.from_pretrained("skt/kogpt2-base-v2",
+                                                    bos_token='<s>', eos_token='</s>', unk_token='<unk>',
+                                                    pad_token='<pad>', mask_token='<mask>')
 
 class NovelDataSet(Dataset):
     def __init__(self, file_path):
