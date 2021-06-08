@@ -9,17 +9,13 @@ from numpy import empty
 from tqdm import tqdm
 from MrBanana_tokenizer import MyTokenizer
 
-vocab_file_path = './tokenizer/vocab.json'
-merge_file_path = './tokenizer/merges.txt'
-
-tokenizer = MyTokenizer(vocab_file_path, merge_file_path)
 counter = 0
 
-def main(dir_path: str, data_path: str, out_path: str):  # , data_path
+def main(dir_path: str, data_path: str, out_path: str, tokenizer):  # , data_path
     # total counter
     global counter
     # Open labeling file 
-    label = open(out_path + 'label.csv', 'w', newline='')
+    label = open(out_path + 'label.csv', 'a', newline='')
     label_writer = csv.writer(label)
     label_novel = data_path.split('.')[0]
     # Open original novel file and Load text
@@ -34,22 +30,46 @@ def main(dir_path: str, data_path: str, out_path: str):  # , data_path
     phrase_path = out_path + label_novel
     phrase_counter = 0
     phrase = ""
+    phrase_token_length = 0
+
+    def append_phrase(sentence, tokenizer):
+        nonlocal phrase_token_length
+        nonlocal phrase
+        token = tokenizer.tokenize(sentence)
+        if phrase_token_length + len(token) > 1022:
+            save_phrase()
+        phrase += sentence + ' '
+        phrase_token = tokenizer.tokenize(phrase)
+        phrase_token_length = len(phrase_token)
+
+    def save_phrase():
+        global counter
+        nonlocal label_novel
+        nonlocal label_writer
+        nonlocal phrase_path
+        nonlocal phrase
+        nonlocal phrase_counter
+        nonlocal phrase_token_length
+        # If over, save phrase as file
+        file_name = 'phrase_' + str(phrase_counter) + '.txt'
+        if not isdir(phrase_path):
+            mkdir(phrase_path)
+        with open(join(phrase_path, file_name), 'w') as f:
+            f.write(phrase)
+        label_writer.writerow([counter, label_novel, file_name])
+        
+        phrase = ""
+        phrase_counter += 1
+        counter += 1
+        phrase_token_length = 0
+
     for line in tqdm(split_list):
         # Check phrase size
         tok = tokenizer.tokenize(line)
-        if len(phrase) + len(tok) >= 1022:
-            # If over, save phrase as file
-            file_name = 'phrase_' + str(phrase_counter) + '.txt'
-            if not isdir(phrase_path):
-                mkdir(phrase_path)
-            with open(phrase_path + '/' + file_name, 'w') as f:
-                f.write(phrase)
-                label_writer.writerow([counter, label_novel, file_name])
-            phrase = ""
-            phrase_counter += 1
-            counter = counter + 1
+        # Add sentence to phrase
+        if len(tok) < 1022:
+            append_phrase(line, tokenizer)
         else:
-            # If not, add sentence to phrase
             sent = ''
             flag = False
             err = False
@@ -61,11 +81,13 @@ def main(dir_path: str, data_path: str, out_path: str):  # , data_path
                     flag = False
                     sent = sent.strip(' ')
                     sent = sent.strip('\n')
-                    phrase += sent + ' '
+                    append_phrase(sent, tokenizer)
+                    sent = ''
                 elif not flag and e == '.':
                     sent = sent.strip(' ')
                     sent = sent.strip('\n')
-                    phrase += sent + ' '
+                    append_phrase(sent, tokenizer)
+                    sent = ''
                 elif flag and len(sent) == 1000:
                     flag = False
                 # elif len(sent) == 1022:
@@ -76,13 +98,14 @@ def main(dir_path: str, data_path: str, out_path: str):  # , data_path
                 else:
                     err = True
                     assert err == True
+            if sent:
+                sent = sent.strip(' ')
+                sent = sent.strip('\n')
+                append_phrase(sent, tokenizer)
+                sent = ''
+
     if phrase:
-        file_name = 'phrase_' + str(phrase_counter) + '.txt'
-        if not isdir(phrase_path):
-            mkdir(phrase_path)
-        with open(phrase_path + '/' + file_name, 'w') as f:
-            f.write(phrase)
-            label_writer.writerow([counter, label_novel, file_name])
+        save_phrase()
     label.close()
 
 if __name__ == '__main__':
@@ -98,9 +121,15 @@ if __name__ == '__main__':
     dir_path = args.dir_path
     out_path = args.out_path
 
+    # Setup tokenizer
+    vocab_file_path = './tokenizer/vocab.json'
+    merge_file_path = './tokenizer/merges.txt'
+
+    tokenizer = MyTokenizer(vocab_file_path, merge_file_path)
+
     # List of novel files
     novel_files = [f for f in listdir(dir_path) if isfile(join(dir_path, f))]
 
     # Distribute Phrase
     for novel in novel_files:
-        main(dir_path, novel, out_path)
+        main(dir_path, novel, out_path, tokenizer)

@@ -24,5 +24,4 @@ class NovelDataSet(Dataset):
             
             line = line + ['<pad>'] * (1024 - len(line))
             item = torch.tensor(self.tokenizer.convert_tokens_to_ids(line))
-            # item = tokenizer.convert_tokens_to_ids(line)
         return item
