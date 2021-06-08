@@ -5,3 +5,5 @@ KoGPT2_weight
 skt
 __pycache__
 .idea
+.vscode
+runs
