@@ -98,6 +98,9 @@ def main(dir_path: str, data_path: str, out_path: str, tokenizer):  # , data_pat
                 else:
                     err = True
                     assert err == True
+                if len(tokenizer.tokenize(sent)) > 1022:
+                    sent = ''
+                    break
             if sent:
                 sent = sent.strip(' ')
                 sent = sent.strip('\n')
