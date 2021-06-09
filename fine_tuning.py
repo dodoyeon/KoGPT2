@@ -11,7 +11,7 @@ from MrBanana_tokenizer import MyTokenizer
 from torch.utils.data import DataLoader
 
 import kss
-from transformers import GPT2LMHeadModel, PreTrainedTokenizerFast
+from transformers import GPT2Config, GPT2LMHeadModel, PreTrainedTokenizerFast
 from tqdm import tqdm
 from tensorboardX import SummaryWriter
 
@@ -19,27 +19,34 @@ from NovelDataset import NovelDataSet
 
 def main(config):
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-    # model = GPT2LMHeadModel(config=GPT2Config(vocab_size=52000))
-    model = GPT2LMHeadModel.from_pretrained('skt/kogpt2-base-v2') #
+    if config['input_path'] is not None:
+        model = GPT2LMHeadModel(config=GPT2Config(vocab_size=52000))
+        model.load_state_dict(torch.load(config['input_path']), strict=False)
+    else:
+        model = GPT2LMHeadModel.from_pretrained('skt/kogpt2-base-v2') #
     model.to(device) # 1510-11MiB
 
     vocab_file_path = './tokenizer/vocab.json'
     merge_file_path = './tokenizer/merges.txt'
 
-    tokenizer = MyTokenizer(vocab_file_path, merge_file_path)
-
-    tokenizer = PreTrainedTokenizerFast.from_pretrained("skt/kogpt2-base-v2",
-                                                        bos_token='<s>', eos_token='</s>', unk_token='<unk>',
-                                                        pad_token='<pad>', mask_token='<mask>')
     # ATTR_TO_SPECIAL_TOKEN = ['<s>','</s>']
     #
     def add_special_tokens_(model, tokenizer):
         orig_num_tokens = tokenizer.get_vocab_size()
         # tokenizer.add_special_tokens(ATTR_TO_SPECIAL_TOKEN)
         # num_added_tokens = len(ATTR_TO_SPECIAL_TOKEN)
-        model.resize_token_embeddings(new_num_tokens=orig_num_tokens + 1) # new_num_tokens=orig_num_tokens + num_added_tokens + 1
+        # new_num_tokens=orig_num_tokens + num_added_tokens + 1
+        model.resize_token_embeddings(new_num_tokens=orig_num_tokens + 1)
 
-    add_special_tokens_(model, tokenizer)
+    if config['tokenizer'] == 'kogpt2':
+        tokenizer = PreTrainedTokenizerFast.from_pretrained("skt/kogpt2-base-v2",
+                                                            bos_token='<s>', eos_token='</s>', unk_token='<unk>',
+                                                            pad_token='<pad>', mask_token='<mask>')
+    elif config['tokenizer'] == 'mrbnn':
+        tokenizer = MyTokenizer(vocab_file_path, merge_file_path)
+        add_special_tokens_(model, tokenizer)
+    else:
+        raise ValueError('Not defined tokenizer.')
 
     learning_rate = config['lr']
     epochs = config['epoch']
@@ -125,6 +132,10 @@ if __name__ == '__main__':
                         dest='data_type', help='Type of Dataset(sentence, phrase)')
     parser.add_argument('--output-frequency', '-of', default=40, type=int,
                         dest='output_freq', help='Frequency of results of loss')
+    parser.add_argument('--tokenizer', '-t', default='kogpt2', type=str,
+                        dest='tokenizer', help='Type of tokenizer(kogpt2, mrbnn)')
+    parser.add_argument('--input-weight', '-i', default=None, type=str,
+                        dest='input_path', help='Pre-trained weight')
     args = parser.parse_args()
 
     config = {
@@ -135,7 +146,9 @@ if __name__ == '__main__':
         'weight_dir': args.weight_dir,
         'prefix_weight': args.prefix_weight,
         'data_type': args.data_type,
-        'output_freq': args.output_freq
+        'output_freq': args.output_freq,
+        'tokenizer': args.tokenizer,
+        'input_path': args.input_path
     }
 
     main(config)
