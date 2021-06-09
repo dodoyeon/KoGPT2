@@ -1,11 +1,6 @@
 from tokenizers.implementations import SentencePieceBPETokenizer
 from tokenizers.processors import BertProcessing
 
-# from transformers.tokenization_utils import PreTrainedTokenizer, PreTrainedTokenizerFast
-
-import json
-
-
 class MyTokenizer():
 
     def __init__(self, vocab_file_path, merge_file_path):
@@ -19,7 +14,7 @@ class MyTokenizer():
         self.added_tokens_encoder = {}
         self.unique_added_tokens_encoder = set()
         self.added_tokens_decoder = {}
-        self.unexpected_sep_token = ['<pad>', '<unk>', '<eos>', '<sos>'] #
+        self.unexpected_sep_token = ['<pad>', '<unk>', '<eos>', '<sos>']
 
         self.encoder = self.tokenizer.get_vocab()
         self.decoder = dict(map(reversed, self.encoder.items()))

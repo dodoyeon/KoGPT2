@@ -11,7 +11,7 @@ from MrBanana_tokenizer import MyTokenizer
 from torch.utils.data import DataLoader
 
 import kss
-from transformers import GPT2Config, GPT2LMHeadModel #,AdamW #, PreTrainedTokenizerFast
+from transformers import GPT2LMHeadModel, PreTrainedTokenizerFast
 from tqdm import tqdm
 from tensorboardX import SummaryWriter
 
@@ -27,6 +27,10 @@ def main(config):
     merge_file_path = './tokenizer/merges.txt'
 
     tokenizer = MyTokenizer(vocab_file_path, merge_file_path)
+
+    tokenizer = PreTrainedTokenizerFast.from_pretrained("skt/kogpt2-base-v2",
+                                                        bos_token='<s>', eos_token='</s>', unk_token='<unk>',
+                                                        pad_token='<pad>', mask_token='<mask>')
     # ATTR_TO_SPECIAL_TOKEN = ['<s>','</s>']
     #
     def add_special_tokens_(model, tokenizer):

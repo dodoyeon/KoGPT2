@@ -1,5 +1,8 @@
 from transformers import GPT2LMHeadModel, GPT2Config
+
+from transformers import PreTrainedTokenizerFast
 from MrBanana_tokenizer import MyTokenizer
+
 import torch
 
 device = torch.device('cpu') # 'cuda:0' if torch.cuda.is_available() else
@@ -11,24 +14,31 @@ model_dir = 'KoGPT2_weight/fine_novel.bin'
 model.to(torch.device('cpu'))
 model.load_state_dict(torch.load(model_dir), strict=False)
 model.eval()
+
 # model = GPT2LMHeadModel.from_pretrained('skt/kogpt2-base-v2')
 # model.config
 # model.to(device)
 
-vocab_file_path = './tokenizer/vocab.json'
-merge_file_path = './tokenizer/merges.txt'
+# MrBanana tokenizer
+# vocab_file_path = './tokenizer/vocab.json'
+# merge_file_path = './tokenizer/merges.txt'
+#
+# tokenizer = MyTokenizer(vocab_file_path, merge_file_path)
+# bos = tokenizer.convert_tokens_to_ids('<s>') # 0
+# eos = tokenizer.convert_tokens_to_ids('</s>') # 2.....
+# pad = tokenizer.convert_tokens_to_ids('<pad>') # 1
+# unk = tokenizer.convert_tokens_to_ids('<unk>') # 3
+#
+# def add_special_tokens_(model, tokenizer):
+#     orig_num_tokens = tokenizer.get_vocab_size()
+#     model.resize_token_embeddings(new_num_tokens=orig_num_tokens + 1)
+#
+# add_special_tokens_(model, tokenizer)
 
-tokenizer = MyTokenizer(vocab_file_path, merge_file_path)
-bos = tokenizer.convert_tokens_to_ids('<s>') # 0
-eos = tokenizer.convert_tokens_to_ids('</s>') # 2.....
-pad = tokenizer.convert_tokens_to_ids('<pad>') # 1
-unk = tokenizer.convert_tokens_to_ids('<unk>') # 3
-
-def add_special_tokens_(model, tokenizer):
-    orig_num_tokens = tokenizer.get_vocab_size()
-    model.resize_token_embeddings(new_num_tokens=orig_num_tokens + 1)
-    
-add_special_tokens_(model, tokenizer)
+# SKT pre-trained tokenizer
+tokenizer = PreTrainedTokenizerFast.from_pretrained("skt/kogpt2-base-v2",
+                                                    bos_token='<s>', eos_token='</s>', unk_token='<unk>',
+                                                    pad_token='<pad>', mask_token='<mask>')
 
 def encoding(text):
     tokens = ['<s>'] + tokenizer.tokenize(text)# + ['</s>']
