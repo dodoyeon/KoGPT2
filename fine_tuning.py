@@ -88,7 +88,7 @@ class NovelDataSet(Dataset):
         return len(data_list)
 
     def __getitem__(self, index):
-        file_name = 'novel_sentence'+str(index)+'.txt'
+        file_name = 'phrase_'+str(index)+'.txt'
         text_path = os.path.join(self.file_path, file_name)
         with open(text_path, 'r', encoding = 'utf-8') as file:
             line = file.read()
@@ -108,9 +108,10 @@ learning_rate = 1e-5
 epochs = 20
 batch_size = 2 # 4
 
-file_path = 'GPT2_dataset'
+file_path = 'phraseDataset/barkers/'
 dataset = NovelDataSet(file_path)
 # dataset.load_total()
+# dataset.__getitem__(634)
 novel_dataloader = DataLoader(dataset, batch_size=batch_size, shuffle=True)
 
 model.train()
