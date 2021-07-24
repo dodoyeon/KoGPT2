@@ -36,6 +36,8 @@ Web crawling : 위키문헌 등
 ## Training 
 사용 리소스: v100 100Gb
 사용 데이터셋: 약 60,000 개 문장, 6MB txt file
+![tr그래프](https://user-images.githubusercontent.com/18351404/126858352-de80d366-a634-41c7-a28e-0a627167125f.png)
+
 
 ## 결과
 
