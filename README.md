@@ -66,10 +66,10 @@ generation 결과는 부진하였다.
 SKT KoGPT-2 의 한계
 * Pre-trained KoGPT-2 모델 한계
 ![그림1](https://user-images.githubusercontent.com/18351404/126859763-be3e7ea2-56b8-40b3-86dd-e3d35e565568.png)
-다음은 SKT에서 제공하는 
+다음은 SKT에서 제공하는 API 를 이용해 문장을 generation 한 것 이다.
 
 ![그림2](https://user-images.githubusercontent.com/18351404/126859767-73f62da4-4428-4bab-919d-f0b77b5807e6.png)
-다음은 
+다음은 pre-trained 된 model만을 이용해 문장을 generation 한 것이다.
 
 * fine-tuning Dataset 부족
 * 홈페이지 구현 측면에서 미흡: 릴레이 구현을 못함
@@ -77,4 +77,4 @@ SKT KoGPT-2 의 한계
 ## 고칠 점
 *  GPT-3 Free 사용가능
 *  fine tuning dataset을 판타지 장르로 한정시킨것이 문제점 : 다양한 장르를 이용해 데이터 수를 늘릴 수 있을것이다. (약 20M 는 피룡할것으로 예측)
-* Hyper parameter tuning : Epoch, learning rate
+*  Hyper parameter tuning : Epoch, learning rate
