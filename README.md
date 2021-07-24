@@ -34,6 +34,8 @@ Web crawling : 위키문헌 등
 
 ## Network
 파이썬 Flask (Python으로 구동되는 웹 프레임워크)
+![홈페이지](https://user-images.githubusercontent.com/18351404/126859963-8044bd34-4eb9-4b04-a144-5283f50ca0c7.png)
+
 [flask-restx api 사용법](https://justkode.kr/python/flask-restapi-1)
 
 
@@ -49,16 +51,23 @@ Web crawling : 위키문헌 등
 
 ## 결과
 
+generation 결과는 부진하였다.
+
 ## 부족한 점 및 문제점 인식
 SKT KoGPT-2 의 한계
-* Pre-trained KoGPT-2 모델 자체의 한계 -> GPT-3 Free 사용으로 해결
+* Pre-trained KoGPT-2 모델 한계
 ![그림1](https://user-images.githubusercontent.com/18351404/126859763-be3e7ea2-56b8-40b3-86dd-e3d35e565568.png)
+다음은 SKT에서 제공하는 
 
 ![그림2](https://user-images.githubusercontent.com/18351404/126859767-73f62da4-4428-4bab-919d-f0b77b5807e6.png)
+다음은 
 
 * fine-tuning Dataset 부족
-* 
+* 홈페이지 구현 측면에서 Network 측면에서 
 
+## 고칠 점
+*  GPT-3 Free 사용가능
+*  fine tuning dataset을 판타지 장르로 한정시킨것이 문제점 : 다양한 장르를 이용해 데이터 수를 늘릴 수 있을것이다.
 
 
 
