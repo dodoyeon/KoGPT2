@@ -1,4 +1,5 @@
 # 한국어 릴레이 소설 프로그램 만들기
+![가계도](https://user-images.githubusercontent.com/18351404/126857974-230380fa-9531-4109-8c05-8f3764199ec0.png)
 
 
 ## 사용Model GPT-2
@@ -16,9 +17,8 @@ SKT brain에서 만든 한국어 GPT-2 모델을 이용
 
 
 ## Dataset
+fine-tuning dataset: 검색 가능한, 저작권기간이 만료된 판타지 장르의 소설 이용
 Web crawling : 위키문헌 등
-검색 가능한, 저작권기간이 만료된 판타지 장르의 소설 ![image](https://user-images.githubusercontent.com/18351404/126857895-fdd842db-31f5-4bc7-9243-2bf4c377f4ce.png)
-
 
 ## Network
 파이썬 Flask (Python으로 구동되는 웹 프레임워크)
