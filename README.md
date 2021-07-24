@@ -12,7 +12,8 @@ decoder는 masked self-attention을 사용한다: 미리 앞에 나올 토큰을
 
 [SKT KoGPT2 pre-trained 모델 v2](https://github.com/SKT-AI/KoGPT2)
 
-SKT brain에서 만든 한국어 GPT-2 모델을 이용
+SKT brain에서 한국어 위키 백과 이외, 뉴스, 모두의 말뭉치 v1.0, 청와대 국민청원등 
+한국어 데이터셋을 이용해 pre-training 한 GPT-2 모델을 이용
 
 [KoGPT-2 활용 task](https://github.com/MrBananaHuman/KorGPT2Tutorial)
 
