@@ -10,15 +10,15 @@ Transformer decoder 만 사용되는 단방향 language model
 밑의 그림처럼 예측한 토큰이 다시 입력으로 들어가기 때문에 auto-regression이라고 한다.
 decoder는 masked self-attention을 사용한다: 미리 앞에 나올 토큰을 보지 않도록 현재 예측한 토큰까지만 인풋으로 들어갈 수 있도록 마스킹을 해준다.
 
-[SKT KoGPT2 pre-trained 모델 v2](https://github.com/SKT-AI/KoGPT2)
+* [SKT KoGPT2 pre-trained 모델 v2](https://github.com/SKT-AI/KoGPT2)
 
 SKT brain에서 한국어 위키 백과 이외, 뉴스, 모두의 말뭉치 v1.0, 청와대 국민청원등 
 한국어 데이터셋을 이용해 pre-training 한 GPT-2 모델을 이용
 
-[KoGPT-2 활용 task](https://github.com/MrBananaHuman/KorGPT2Tutorial)
+* [KoGPT-2 활용 task](https://github.com/MrBananaHuman/KorGPT2Tutorial)
 
 
-[한국어 소설 생성 GPT-2](https://github.com/shbictai/narrativeKoGPT2)
+* [한국어 소설 생성 GPT-2](https://github.com/shbictai/narrativeKoGPT2)
 
 
 ## Dataset
@@ -42,7 +42,6 @@ Web crawling : 위키문헌 등
 [Flask tutorial](https://flask.palletsprojects.com/en/1.1.x/quickstart/)
 
 
-
 ## Training 
 사용 리소스: v100 100Gb
 사용 데이터셋: 약 60,000 개 문장, 6MB txt file
@@ -50,6 +49,16 @@ Web crawling : 위키문헌 등
 
 
 ## 결과
+* 1 sentence 1 input (5 epoch)
+![결과1](https://user-images.githubusercontent.com/18351404/126860886-42d8ccd1-219a-4b83-8fa4-c4c38c0dc49d.png)
+
+* 1022 length paragraph 1 input (20 epoch)
+![결과2](https://user-images.githubusercontent.com/18351404/126860915-59b95743-c46e-4bca-9371-bb122f718cf0.png)
+
+* 1022 length paragraph 1 input (60 epoch)
+![결과3](https://user-images.githubusercontent.com/18351404/126860937-94bb75de-ecc3-40b5-957e-bd524ab5f103.png)
+
+
 
 generation 결과는 부진하였다.
 
@@ -63,11 +72,9 @@ SKT KoGPT-2 의 한계
 다음은 
 
 * fine-tuning Dataset 부족
-* 홈페이지 구현 측면에서 Network 측면에서 
+* 홈페이지 구현 측면에서 미흡: 릴레이 구현을 못함
 
 ## 고칠 점
 *  GPT-3 Free 사용가능
-*  fine tuning dataset을 판타지 장르로 한정시킨것이 문제점 : 다양한 장르를 이용해 데이터 수를 늘릴 수 있을것이다.
-
-
-
+*  fine tuning dataset을 판타지 장르로 한정시킨것이 문제점 : 다양한 장르를 이용해 데이터 수를 늘릴 수 있을것이다. (약 20M 는 피룡할것으로 예측)
+* Hyper parameter tuning : Epoch, learning rate
