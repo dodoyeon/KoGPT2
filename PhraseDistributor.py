@@ -1,12 +1,10 @@
 from os import listdir, mkdir
 from os.path import isfile, isdir, join
-
 import argparse
-
 import csv
 import kss
-from numpy import empty
 from tqdm import tqdm
+
 from MrBanana_tokenizer import MyTokenizer
 
 counter = 0
@@ -14,26 +12,26 @@ counter = 0
 def main(dir_path: str, data_path: str, out_path: str, tokenizer):  # , data_path
     # total counter
     global counter
-    # Open labeling file 
-    label = open(out_path + 'label.csv', 'a', newline='')
+    # 각 paraphrase 마다 tag를 추가
+    label = open(out_path + 'label.csv', 'a', newline='') # Open labeling file
     label_writer = csv.writer(label)
-    label_novel = data_path.split('.')[0]
+    label_novel = data_path.split('.')[0] # 소설 제목
     # Open original novel file and Load text
     novel = open(dir_path + data_path, 'r', encoding='utf-8')
     text = novel.read()
-    text = text.replace("\n", "")
+    text = text.replace("\n", "") # 인소에 있는 특정 단어들 빼주기
     text = text.replace("Aa", "")
     novel.close()
-    # Split sentences
-    split_list = kss.split_sentences(text)
+    
+    split_list = kss.split_sentences(text) # Split sentences
 
     phrase_path = out_path + label_novel
     phrase_counter = 0
     phrase = ""
     phrase_token_length = 0
 
-    def append_phrase(sentence, tokenizer):
-        nonlocal phrase_token_length
+    def append_phrase(sentence, tokenizer): # sentence를 phrase로 만들어주는 함수
+        nonlocal phrase_token_length # nonlocal = 현재 함수의 지역 변수가 아니라는 뜻이며 바깥쪽 함수의 지역 변수를 사용
         nonlocal phrase
         token = tokenizer.tokenize(sentence)
         if phrase_token_length + len(token) > 1022:
@@ -44,11 +42,11 @@ def main(dir_path: str, data_path: str, out_path: str, tokenizer):  # , data_pat
 
     def save_phrase():
         global counter
-        nonlocal label_novel
-        nonlocal label_writer
+        nonlocal label_novel # 소설 제목
+        nonlocal label_writer # csv writer
         nonlocal phrase_path
         nonlocal phrase
-        nonlocal phrase_counter
+        nonlocal phrase_counter # phrase tag 번호
         nonlocal phrase_token_length
         # If over, save phrase as file
         file_name = 'phrase_' + str(phrase_counter) + '.txt'
@@ -63,13 +61,13 @@ def main(dir_path: str, data_path: str, out_path: str, tokenizer):  # , data_pat
         counter += 1
         phrase_token_length = 0
 
-    for line in tqdm(split_list):
+    for line in tqdm(split_list): # sentence list 안에서
         # Check phrase size
         tok = tokenizer.tokenize(line)
         # Add sentence to phrase
         if len(tok) < 1022:
             append_phrase(line, tokenizer)
-        else:
+        else: # 더 길면
             sent = ''
             flag = False
             err = False

@@ -10,22 +10,20 @@ api = Api(app,
         contact="mari970@naver.com",
         license='GIST'
         )
-#
-# Relay = Namespace('Relay')
-# api.add_namespace(Relay, '/relay_generation')
 
-# parser = reqparse.RequestParser()
-# parser.add_argument('name', type=str, help= 'user name')
-# parser.add_argument('input sentence', type = str, help= 'input korean sentence')
-# args = parser.parse_args()
+Relay = Namespace('Relay')
+api.add_namespace(Relay, '/relay_generation')
+
+parser = reqparse.RequestParser()
+parser.add_argument('name', type=str, help= 'user name')
+parser.add_argument('input sentence', type = str, help= 'input korean sentence')
+args = parser.parse_args()
 
 @api.route('/')
 class Inference(Resource):
     def post(self):
-        # address = 'http://210.125.85.141:5000/'
-
         # novel[idx] = requests.json.get(args['input sentence'])
-        sentence = request.form['sentence'] # 'http://210.125.85.141/novel'
+        sentence = request.form['sentence']
         out = generator(sentence)
         # novel[idx+1] = requests.json.get(out)
         output = {'response': out}

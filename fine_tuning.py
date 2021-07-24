@@ -80,7 +80,7 @@ def main(config):
 
     if config['data_type'] == 'sentence':
         # Sentence Dataset
-        file_path = 'GPT2_dataset/'
+        file_path = 'sentDataset/'
         dataset = NovelDataSet(file_path, tokenizer)
     elif config['data_type'] == 'phrase':
         # Phrase Dataset

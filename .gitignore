@@ -1,5 +1,6 @@
-GPT2_dataset
+sentDataset
 GPT2_dataset_original
+phraseDataset
 KoGPT-2Model
 loss
 KoGPT2_weight
