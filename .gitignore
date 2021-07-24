@@ -1,6 +1,6 @@
-sentDataset
+SentDataset
 GPT2_dataset_original
-phraseDataset
+PhraseDataset
 KoGPT-2Model
 loss
 KoGPT2_weight
