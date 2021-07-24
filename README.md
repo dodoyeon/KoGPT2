@@ -25,10 +25,18 @@ SKT brain에서 한국어 위키 백과 이외, 뉴스, 모두의 말뭉치 v1.0
 fine-tuning dataset: 검색 가능한, 저작권기간이 만료된 판타지 장르의 소설 이용
 Web crawling : 위키문헌 등
 ![데이터차이](https://user-images.githubusercontent.com/18351404/126858161-e6523ffc-fcc8-41cb-b65f-32f89a050c2a.png)
+[위키 문헌](https://ko.wikisource.org/wiki/%EC%9C%84%ED%82%A4%EB%AC%B8%ED%97%8C:%EB%8C%80%EB%AC%B8)
+
+
+[모두의 말뭉치](https://corpus.korean.go.kr/)
+
+
 
 ## Network
 파이썬 Flask (Python으로 구동되는 웹 프레임워크)
 [flask-restx api 사용법](https://justkode.kr/python/flask-restapi-1)
+
+
 [Flask tutorial](https://flask.palletsprojects.com/en/1.1.x/quickstart/)
 
 
@@ -40,5 +48,17 @@ Web crawling : 위키문헌 등
 
 
 ## 결과
+
+## 부족한 점 및 문제점 인식
+SKT KoGPT-2 의 한계
+* Pre-trained KoGPT-2 모델 자체의 한계 -> GPT-3 Free 사용으로 해결
+![그림1](https://user-images.githubusercontent.com/18351404/126859763-be3e7ea2-56b8-40b3-86dd-e3d35e565568.png)
+
+![그림2](https://user-images.githubusercontent.com/18351404/126859767-73f62da4-4428-4bab-919d-f0b77b5807e6.png)
+
+* fine-tuning Dataset 부족
+* 
+
+
 
 
