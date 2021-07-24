@@ -7,12 +7,17 @@ Transformer decoder 만 사용되는 단방향 language model
 decoder는 masked self-attention을 사용한다: 미리 앞에 나올 토큰을 보지 않도록 현재 예측한 토큰까지만 인풋으로 들어갈 수 있도록 마스킹을 해준다.
 
 [SKT KoGPT2 pre-trained 모델 v2](https://github.com/SKT-AI/KoGPT2)
+SKT brain에서 만든 한국어 GPT-2 모델을 이용
+
 [KoGPT-2 활용 task](https://github.com/MrBananaHuman/KorGPT2Tutorial)
+
+
 [한국어 소설 생성 GPT-2](https://github.com/shbictai/narrativeKoGPT2)
 
 
 ## Dataset
 Web crawling : 위키문헌 등
+검색 가능한, 저작권기간이 만료된 판타지 장르의 소설 ![image](https://user-images.githubusercontent.com/18351404/126857895-fdd842db-31f5-4bc7-9243-2bf4c377f4ce.png)
 
 
 ## Network
