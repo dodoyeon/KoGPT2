@@ -68,6 +68,7 @@ SKT KoGPT-2 의 한계
 ![그림1](https://user-images.githubusercontent.com/18351404/126859763-be3e7ea2-56b8-40b3-86dd-e3d35e565568.png)
 다음은 SKT에서 제공하는 API 를 이용해 문장을 generation 한 것 이다.
 
+
   ![그림4](https://user-images.githubusercontent.com/18351404/126892744-b206c38c-a7f3-4701-8524-90d070a7c1ca.png)
 다음은 pre-trained 된 model만을 이용해 문장을 generation 한 것이다.
 
