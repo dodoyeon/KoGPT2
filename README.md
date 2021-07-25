@@ -50,13 +50,13 @@ Web crawling : 위키문헌 등
 
 ## 결과
 * 1 sentence 1 input (5 epoch)
-![결과1](https://user-images.githubusercontent.com/18351404/126860886-42d8ccd1-219a-4b83-8fa4-c4c38c0dc49d.png)
+![그림1](https://user-images.githubusercontent.com/18351404/126892716-cd5b6576-dad1-4e3f-b571-b01914565b17.png)
 
 * 1022 length paragraph 1 input (20 epoch)
-![결과2](https://user-images.githubusercontent.com/18351404/126860915-59b95743-c46e-4bca-9371-bb122f718cf0.png)
+![그림2](https://user-images.githubusercontent.com/18351404/126892722-9714634f-9218-486d-bbba-62a03970b7f4.png)
 
 * 1022 length paragraph 1 input (60 epoch)
-![결과3](https://user-images.githubusercontent.com/18351404/126860937-94bb75de-ecc3-40b5-957e-bd524ab5f103.png)
+![그림3](https://user-images.githubusercontent.com/18351404/126892725-a117bca3-48c0-4774-b089-8673919ba098.png)
 
 
 
@@ -68,7 +68,7 @@ SKT KoGPT-2 의 한계
 ![그림1](https://user-images.githubusercontent.com/18351404/126859763-be3e7ea2-56b8-40b3-86dd-e3d35e565568.png)
 다음은 SKT에서 제공하는 API 를 이용해 문장을 generation 한 것 이다.
 
-![그림2](https://user-images.githubusercontent.com/18351404/126859767-73f62da4-4428-4bab-919d-f0b77b5807e6.png)
+![그림4](https://user-images.githubusercontent.com/18351404/126892744-b206c38c-a7f3-4701-8524-90d070a7c1ca.png)
 다음은 pre-trained 된 model만을 이용해 문장을 generation 한 것이다.
 
 * fine-tuning Dataset 부족
