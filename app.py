@@ -2,6 +2,7 @@ from flask import Flask, request
 from flask_restx import Resource, Api, reqparse, Namespace
 from MrBanana_generation import generator
 
+# Inference SERVER
 app = Flask(__name__)
 api = Api(app,
         version='1.0',
@@ -11,13 +12,13 @@ api = Api(app,
         license='GIST'
         )
 
-Relay = Namespace('Relay')
-api.add_namespace(Relay, '/relay_generation')
-
-parser = reqparse.RequestParser()
-parser.add_argument('name', type=str, help= 'user name')
-parser.add_argument('input sentence', type = str, help= 'input korean sentence')
-args = parser.parse_args()
+# Relay = Namespace('Relay')
+# api.add_namespace(Relay, '/relay_generation')
+#
+# parser = reqparse.RequestParser()
+# parser.add_argument('name', type=str, help= 'user name')
+# parser.add_argument('input sentence', type = str, help= 'input korean sentence')
+# args = parser.parse_args()
 
 @api.route('/')
 class Inference(Resource):
