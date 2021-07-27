@@ -7,16 +7,10 @@
 </head>
 
 <body>
-	<form action="/" method="post"> <!--/-->
+	<form action="/inference" method="post"> <!--/ 주소에서 post함수 사용-->
 		<p>user 문장: <input type="text" id="input" name="input"></p>
-		<p>다음 문장 inference <sent type="submit" value="Relay" onclick="alert('Inference 중 입니다')"/></p>
-	</form>
-
-	<table>
-			<th>순서</th>
-			<th>문장</th>
-			<tr bgcolor="skyblue">
-	</table>
+		<p>다음 문장 inference <input type="submit" value="Relay" onclick="alert('Inference 중 입니다')"/></p>
+	</form> <!--submit: form안에 있는 내용을 전부 서버로 보낸다는 의미-->
 </body>
 </html>
 

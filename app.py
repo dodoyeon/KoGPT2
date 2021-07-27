@@ -23,13 +23,14 @@ api = Api(app,
 @api.route('/')
 class Inference(Resource):
     def post(self):
-        # novel[idx] = requests.json.get(args['input sentence'])
-        sentence = request.form['sentence']
+        # novel[idx] = requests.json.get(args['sentence'])
+        sentence = request.get_json()['sentence']
+        print(sentence)
         out = generator(sentence)
         # novel[idx+1] = requests.json.get(out)
         output = {'response': out}
-
-        return output, 200
+        print(output)
+        return output # , 200 = HTTP에서 성공을 의미하는 status code
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    app.run(host='172.26.37.206', port=5000, debug=True)

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Relay Novel generation Program with AI</title>
+	<p>You can write Fantasy Relay novel with others using Korean GPT-2 model</p>
+</head>
+<body>
+    <form action="/inference" method="post">
+		<p>user 문장: <input type="text" id="input" name="input"></p>
+		<p>다음 문장 inference <input type="submit" value="Relay" onclick="alert('Inference 중 입니다')"/></p>
+	</form>
+    <p>입력 문장: </p>
+    {{relay['sentence']}}<br>
+    <p>출력 문장: </p>
+    {{relay['result']}}<br>
+
+<!--    <div id="content">-->
+<!--        <table>-->
+<!--            <thead>-->
+<!--            <tr>-->
+<!--            <th>순서</th>-->
+<!--            <th>문장</th>-->
+<!--            </tr>-->
+<!--            </thead>-->
+<!--            <tbody>-->
+<!--                {% for sent in relay['novel'] %}-->
+<!--                    <tr>-->
+<!--                        <td>{{loop.index}}</td>-->
+<!--                        <td>{{sent}}</td>-->
+<!--                {% endfor %}-->
+<!--            </tbody>-->
+<!--        </table>-->
+<!--    </div>-->
+</body>
+</html>
