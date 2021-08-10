@@ -2,7 +2,6 @@ from tokenizers.implementations import SentencePieceBPETokenizer
 from tokenizers.processors import BertProcessing
 
 class MyTokenizer():
-
     def __init__(self, vocab_file_path, merge_file_path):
         self.tokenizer = SentencePieceBPETokenizer(vocab_file_path, merge_file_path)
         self.unknown_token = self.tokenizer.token_to_id("<unk>")

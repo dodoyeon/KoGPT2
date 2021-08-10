@@ -69,7 +69,7 @@ def main(dir_path: str, data_path: str, out_path: str, tokenizer):  # , data_pat
             append_phrase(line, tokenizer)
         else: # 더 길면
             sent = ''
-            flag = False
+            flag = False # 대사의 큰, 작은 따옴표를 한 분장으로 처리하기 위해
             err = False
             for e in line:
                 sent += e
@@ -77,10 +77,10 @@ def main(dir_path: str, data_path: str, out_path: str, tokenizer):  # , data_pat
                     flag = True
                 elif flag and (e == '"' or e == '”' or e == '’' or e == "'"):
                     flag = False
-                    sent = sent.strip(' ')
+                    sent = sent.strip(' ') # strip() : 문자열에서 특정 문자 제거
                     sent = sent.strip('\n')
                     append_phrase(sent, tokenizer)
-                    sent = ''
+                    sent = '' # 초기화
                 elif not flag and e == '.':
                     sent = sent.strip(' ')
                     sent = sent.strip('\n')

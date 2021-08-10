@@ -28,7 +28,8 @@ def post():
         result = result.json()
         print(result)
         response = result['response']
-        novel += response
+        # novel += response -> string은 char의 list이므로 +가 아니라 .append() 사용해야한다.
+        novel.append(response)
         count+=2
         relay = {
             'count' : count,
