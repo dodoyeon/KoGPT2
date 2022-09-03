@@ -11,21 +11,24 @@ Using the homepage, the output is printed and many users can collaborate to crea
 ## Creative & Self-motivating Project Class
 ### base Model GPT-2
 
+One-way language model that is similar to decoder-only Transformer
+It is called Auto-Regressive model that the predicted token enters the input again as shown in the figure below.
+Decoder uses the masked self-attention to mask tokens except already predicted tokens.
 
 Transformer decoder 만 사용되는 단방향 language model
 밑의 그림처럼 예측한 토큰이 다시 입력으로 들어가기 때문에 auto-regression이라고 한다.
 decoder는 masked self-attention을 사용한다: 미리 앞에 나올 토큰을 보지 않도록 현재 예측한 토큰까지만 인풋으로 들어갈 수 있도록 마스킹을 해준다.
 
-* [SKT KoGPT2 pre-trained 모델 v2](https://github.com/SKT-AI/KoGPT2)
+* [SKT KoGPT2 pre-trained model v2](https://github.com/SKT-AI/KoGPT2)
 
 SKT brain에서 한국어 위키 백과 이외, 뉴스, 모두의 말뭉치 v1.0, 청와대 국민청원등 
 한국어 데이터셋을 이용해 pre-training 한 GPT-2 모델을 이용하였다.
 
 
 [reference]
-* [KoGPT-2 활용 task](https://github.com/MrBananaHuman/KorGPT2Tutorial)
+* [Task using KoGPT-2](https://github.com/MrBananaHuman/KorGPT2Tutorial)
 
-* [한국어 소설 생성 GPT-2](https://github.com/shbictai/narrativeKoGPT2)
+* [Korean novel generation GPT-2](https://github.com/shbictai/narrativeKoGPT2)
 
 
 ### Dataset
