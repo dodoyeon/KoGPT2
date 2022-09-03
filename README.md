@@ -75,6 +75,7 @@ Fine tuning Dataset: About 60,000 sentences, 6MB txt file
 ![그림3](https://user-images.githubusercontent.com/18351404/126892725-a117bca3-48c0-4774-b089-8673919ba098.png)
 
 The generation result is not good.
+
 generation 결과는 부진하였다.
 
 ### 부족한 점 및 문제점 인식
