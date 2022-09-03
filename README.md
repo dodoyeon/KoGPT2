@@ -106,6 +106,7 @@ The following is sentence generation using the pre-trained KpGPT-2.
 
 *  Limiting fine tuning dataset to fantasy genre caused the fine-tuning dataset
    (approximately 20M expected)
+   
    fine tuning dataset을 판타지 장르로 한정시킨것이 문제점 : 다양한 장르를 이용해 데이터 수를 늘릴 수 있을것이다. (약 20M 는 필요할것으로 예측)
 
 *  Hyper parameter tuning : Epoch, learning rate
