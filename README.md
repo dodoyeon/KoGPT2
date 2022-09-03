@@ -12,6 +12,7 @@ Using the homepage, the output is printed and many users can collaborate to crea
 ### base Model GPT-2
 
 One-way language model that is similar to decoder-only Transformer
+
 It is called Auto-Regressive model that the predicted token enters the input again as shown in the figure below.
 Decoder uses the masked self-attention to mask tokens except already predicted tokens.
 
@@ -84,17 +85,20 @@ Limitation of SKT KoGPT-2
 ![그림1](https://user-images.githubusercontent.com/18351404/126859763-be3e7ea2-56b8-40b3-86dd-e3d35e565568.png)
 
 The following is sentence generation using the API provided by SKT.
+
 다음은 SKT에서 제공하는 API 를 이용해 문장을 generation 한 것 이다.
 
 
   ![그림4](https://user-images.githubusercontent.com/18351404/126892744-b206c38c-a7f3-4701-8524-90d070a7c1ca.png)
   
 The following is sentence generation using the pre-trained KpGPT-2.
+
 다음은 pre-trained 된 model만을 이용해 문장을 generation 한 것이다.
 
 * Insufficient fine-tuning Dataset
 
 * Poor in homepage implementation: relay implementation failed
+
   홈페이지 구현 측면에서 미흡: 릴레이 구현을 못함
 
 ## OpenAI GPT-3 Api 
